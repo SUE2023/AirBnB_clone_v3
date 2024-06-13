@@ -68,7 +68,12 @@ class BaseModel:
         new_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
+        """Remove the password for safety"""
+        if "password" in new_dict:
+            del new_dict["password"]
+
         return new_dict
+
 
     def delete(self):
         """delete the current instance from the storage"""
